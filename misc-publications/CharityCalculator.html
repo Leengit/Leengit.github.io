@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><script type="text/javascript" src="https://web-static.archive.org/_static/js/bundle-playback.js?v=msCHzjBE" charset="utf-8"></script>
+<script type="text/javascript" src="https://web-static.archive.org/_static/js/wombat.js?v=txqj7nKC" charset="utf-8"></script>
+<script>window.RufflePlayer=window.RufflePlayer||{};window.RufflePlayer.config={"autoplay":"on","unmuteOverlay":"hidden"};</script>
+<script type="text/javascript" src="https://web-static.archive.org/_static/js/ruffle/ruffle.js"></script>
+<script type="text/javascript">
+    __wm.init("https://web.archive.org/web");
+  __wm.wombat("https://www.cs.rpi.edu/~leen/misc-publications/CharityCalculator.html","20240920012725","https://web.archive.org/","web","https://web-static.archive.org/_static/",
+	      "1726795645");
+</script>
+<link rel="stylesheet" type="text/css" href="https://web-static.archive.org/_static/css/banner-styles.css?v=p7PEIJWi" />
+<link rel="stylesheet" type="text/css" href="https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1"/>
+<title>Lee Newberg's Charity Gift Giving Guide</title>
+</head>
+<body>
+<script type="text/javascript">
+  function MyCalc(){
+    var Household = parseFloat(document.Form1.textHousehold.value);
+    var Assets = parseFloat(document.Form1.textAssets.value);
+    var Income = parseFloat(document.Form1.textIncome.value);
+    var GDPPerCapita = parseFloat(document.Form1.textGDPPerCapita.value);
+
+    var Numerator = 0.10 * Assets + 1.00 * Income;
+    var Denominator = Numerator + 2.0 * (Household + 1) * GDPPerCapita;
+    var SlidingScale = Math.round(10000 * Numerator / Denominator) / 10000;
+    var AssetsFraction = Math.round(300.0 * SlidingScale) / 100;
+    var IncomeFraction = Math.round(300.0 * SlidingScale) / 10;
+
+    document.Form1.textSlidingScale.value = SlidingScale;
+    document.Form1.textAssetsFraction.value = AssetsFraction;
+    document.Form1.textIncomeFraction.value = IncomeFraction;
+
+    var Gold = ((Assets + 10.0 * Income) * Math.round(300.0 * SlidingScale)) / 10000;
+    document.Form1.textGold.value = Gold;
+
+    var Silver = Gold * 0.50;
+    document.Form1.textSilver.value = Silver;
+
+    var Bronze = Gold * 0.25;
+    document.Form1.textBronze.value = Bronze;
+  }
+</script>
+
+<h1>Charity Gift Giving Guide</h1>
+
+<p>If you are like most people, you can afford to give more.&nbsp; Read on, to see if you can win an Olympic medal in charitable giving.&nbsp;</p>
+
+<p>If you are very rich, each year you can afford to give away&nbsp;3% of your net assets plus&nbsp;30% of your annual income not from assets.&nbsp; If you are not so rich, those percentages are significantly reduced.&nbsp; The computation here uses a sliding scale, computed from how your assets and income compare to the gross domestic product that is attributable to an average household of your size.&nbsp; More details are in the notes below.&nbsp;</p>
+
+<h2>The Inputs</h2>
+<p>The values you will need to enter are as follows.&nbsp; Approximate values are good enough.&nbsp;</p>
+
+<ul>
+<li><strong>Household size</strong> includes everyone who lives in your household or who is your financial dependent.&nbsp; Feel free to include a fractional amount (entered as a decimal) for those partially dependent upon you.&nbsp;</li>
+
+<li><strong>Household net assets</strong> includes everything owned by the people in your household minus all the debts.&nbsp; Add together the value of bank accounts, mutual funds, stocks, bonds, cars, boats, real estate, patents*, small businesses*, etc., and subtract off credit card debts, student loans, mortgages, etc.&nbsp; Note, do not include in your assets the amounts that are set aside for anticipated debts like education or medical expenses.&nbsp; If the household debts exceed the assets then enter a negative value using a minus sign.&nbsp;</li>
+
+<li><strong>Household annual income not from assets</strong> includes household income not derived from your assets.&nbsp; Include gross wages, but do not include interest, dividends, capital gains, royalties*, etc.&nbsp; Do not subtract for any deductions, though see the notes below.&nbsp;</li>
+</ul>
+
+<h2>The Calculations</h2>
+<p>This is a JavaScript form; the calculations are done on your computer and your financial information never travels over the Internet.&nbsp; Please enter numbers, but no commas or dollar signs, etc.&nbsp; Note that if the values on Lines B, C, and D are all entered in thousands of dollars, or all in euros or whatever, then all computed giving levels will be similarly denominated.&nbsp;
+</p>
+
+<form name="Form1" action="">
+<table>
+<tr><td>A. <u>Household size</u>:</td><td>&nbsp;</td><td>&nbsp;&nbsp;<input type="text" name="textHousehold" value="4" onchange="MyCalc()" onclick="MyCalc()"/></td></tr>
+<tr><td>B. <u>Household net assets</u>:</td><td>&nbsp;</td><td>$<input type="text" name="textAssets" value="20000" onchange="MyCalc()" onclick="MyCalc()"/></td></tr>
+<tr><td>C. <u>Household annual income not from assets</u>:</td><td>&nbsp;</td><td>$<input type="text" name="textIncome" value="50000" onchange="MyCalc()" onclick="MyCalc()"/></td></tr>
+<tr><td>D. <u>Gross Domestic Product per capita</u>:</td><td>(defaults to <a href="https://web.archive.org/web/20240920012725/https://secure.wikimedia.org/wikipedia/en/wiki/List_of_countries_by_GDP_%28nominal%29_per_capita">IMF value for the USA, 2017</a>)</td><td>$<input type="text" name="textGDPPerCapita" value="59501" onchange="MyCalc()" onclick="MyCalc()"/></td></tr>
+<tr><td>&nbsp;</td><td><input type="button" value="Calculate" onclick="MyCalc()"/>&nbsp;<input type="reset" value="Start Over"/></td></tr>
+<tr><td>1. <u>Sliding scale</u>:</td><td>See below</td><td><input type="text" name="textSlidingScale"/></td></tr>
+<tr><td>2. <u>Gold Medal percentage for assets</u>:</td><td>Multiply Line 1 by &nbsp;3%</td><td>%<input type="text" name="textAssetsFraction"/></td></tr>
+<tr><td>3. <u>Gold Medal percentage for income</u>:</td><td>Multiply Line 1 by 30%</td><td>%<input type="text" name="textIncomeFraction"/></td></tr>
+<tr><td>4G.<u>Gold Medal annual giving level</u>:</td><td>Multiply percentages by entered values</td><td>$<input type="text" name="textGold"/></td></tr>
+<tr><td>4S.<u>Silver Medal annual giving level</u>:</td><td>Multiply Line&nbsp;4G by 50%:</td><td>$<input type="text" name="textSilver"/></td></tr>
+<tr><td>4B.<u>Bronze Medal annual giving level</u>:</td><td>Multiply Line&nbsp;4G by 25%:</td><td>$<input type="text" name="textBronze"/></td></tr>
+</table>
+</form>
+
+<p>Look at the numbers on Lines 4G, 4S, and 4B.&nbsp; It is hard to win even a Bronze medal.&nbsp; <strong>Can you do it?</strong></p>
+
+<h2>The Notes (for those who care):</h2>
+<ul>
+
+<li>For patents, small businesses, royalties and other hard to value assets and income, try to distinguish the asset from the income.&nbsp; For instance, imagine that you sold your small business to someone else, who then employed you in your current role.&nbsp; The price for that sale should be included in your net assets.&nbsp; The annual salary you would be paid should be included in your income.&nbsp;</li>
+
+<li>If this year's income value is unusual, you might instead use a typical year's value.&nbsp;</li>
+
+<li>If you have out-of-pocket medical, tuition, or other similar expenses that are nontrivial for you, then you yourself are a charitable cause.&nbsp; Include these expenses in your charitable giving as you work for a medal.&nbsp;</li>
+
+<li>If you live in a country where taxes are atypically high or low, then it may be appropriate to adjust your charitable giving to compensate.</li>
+<li>The percentages shown on Lines&nbsp;2 and&nbsp;3 are computed using a sliding scale.&nbsp;
+<ul>
+<li>The <em>sliding scale</em> is given as [I + A/10] / [I + A/10 + 2(H+1)P], where
+<ul>
+<li>I is the the household annual income not from assets,</li>
+<li>A is the household net assets,</li>
+<li>H is the household size, and</li>
+<li>P is the gross domestic product per capita.</li>
+</ul></li>
+<li>The sliding scale multiplies&nbsp;3% to give the asssets percentage on Line&nbsp;2.&nbsp; The <em>sliding scale</em> multiplies&nbsp;30% to give the income percentage on Line&nbsp;3.&nbsp;</li>
+</ul></li>
+</ul>
+
+<p>Copyright 2008, 2011, 2015, 2017 Lee Newberg.&nbsp; All rights reserved.&nbsp;</p>
+</body>
+</html>
+<!--
+     FILE ARCHIVED ON 01:27:25 Sep 20, 2024 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 19:24:45 Apr 10, 2025.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 1.129
+  exclusion.robots: 0.062
+  exclusion.robots.policy: 0.044
+  esindex: 0.016
+  cdx.remote: 25.322
+  LoadShardBlock: 157.142 (3)
+  PetaboxLoader3.datanode: 160.722 (4)
+  load_resource: 283.181
+  PetaboxLoader3.resolve: 233.795
+-->

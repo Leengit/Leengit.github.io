@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><script type="text/javascript" src="https://web-static.archive.org/_static/js/bundle-playback.js?v=msCHzjBE" charset="utf-8"></script>
+<script type="text/javascript" src="https://web-static.archive.org/_static/js/wombat.js?v=txqj7nKC" charset="utf-8"></script>
+<script>window.RufflePlayer=window.RufflePlayer||{};window.RufflePlayer.config={"autoplay":"on","unmuteOverlay":"hidden"};</script>
+<script type="text/javascript" src="https://web-static.archive.org/_static/js/ruffle/ruffle.js"></script>
+<script type="text/javascript">
+    __wm.init("https://web.archive.org/web");
+  __wm.wombat("https://www.cs.rpi.edu/~leen/misc-publications/SomeStatDefs.html","20240919232248","https://web.archive.org/","web","https://web-static.archive.org/_static/",
+	      "1726788168");
+</script>
+<link rel="stylesheet" type="text/css" href="https://web-static.archive.org/_static/css/banner-styles.css?v=p7PEIJWi" />
+<link rel="stylesheet" type="text/css" href="https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1"/>
+<title>Some Useful Statistics Definitions</title>
+</head>
+
+<body>
+<h1>Some Useful Statistics Definitions</h1>
+<ul>
+    <li><a href="#fundamentals">The Four Fundamental Numbers</a>: <a href="#TruePositive">True Positive</a>,
+								  <a href="#TrueNegative">True Negative</a>,
+								  <a href="#FalsePositive">False Positive</a>,
+								  <a href="#FalseNegative">False Negative</a>.</li>
+    <li><a href="#ratios">The Four (or Eight) Basic Ratios</a>: <a href="#Sensitivity">Sensitivity</a> (and <a href="#TypeIIError">Type II Error</a>),
+								<a href="#Specificity">Specificity</a> (and <a href="#TypeIError">Type I Error</a>),
+								<a href="#PositivePredictiveValue">Positive Predictive Value</a> (and <a href="#FalseDiscoveryRate">False Discovery Rate</a>),
+								<a href="#NegativePredictiveValue">Negative Predictive Value</a> (and <a href="#FalseOmissionRate">False Omission Rate</a>).</li>
+    <li><a href="#ratiosOfRatios">The Four Ratios of Ratios</a>: Likelihood Ratios for <a href="#PositiveTests">Positive Tests</a>,
+										       <a href="#NegativeTests">Negative Tests</a>,
+										       <a href="#PositiveSubjects">Positive Subjects</a>,
+										       <a href="#NegativeSubjects">Negative Subjects</a>.</li>
+    <li><a href="#whole">The Test As a Whole</a>: <a href="#Significance">Significance</a>,
+						  <a href="#Power">Power</a>.</li>
+</ul>
+
+<h2><a name="fundamentals">The Four Fundamental Numbers</a></h2>
+
+<h3>In Tabular Form</h3>
+<p>
+For individuals tested for some condition, disease, or other attribute:
+</p>
+<blockquote>
+  <table border="1" cellpadding="2" cellspacing="2">
+      <tr>
+        <td align="center" valign="middle"></td>
+        <td align="center" valign="middle">Doesn't Have The Condition<br/>
+                                           (Satisfies Null Hypothesis)</td>
+        <td align="center" valign="middle">Has The Condition<br/>
+                                           (Does Not Satisfy Null Hypothesis)</td>
+      </tr>
+      <tr>
+        <td align="center" valign="middle">Tests Negative<br/>
+                                           (Null Accepted)</td>
+        <td align="center" valign="middle">True Negative<br/>
+                                           TN or n<sub>00</sub></td>
+        <td align="center" valign="middle">False Negative<br/>
+                                           FN or n<sub>10</sub></td>
+      </tr>
+      <tr>
+        <td align="center" valign="middle">Tests Positive<br/>
+                                           (Null Rejected)</td>
+        <td align="center" valign="middle">False Positive<br/>
+                                           FP or n<sub>01</sub></td>
+        <td align="center" valign="middle">True Positive<br/>
+                                           TP or n<sub>11</sub></td>
+      </tr>
+  </table>
+</blockquote>
+
+<h3>In Words</h3>
+<ul>
+  <li><a name="TruePositive">True positive</a>
+  <ul>
+    <li>The individual has the condition and tests positive for the condition</li>
+    <li>The individual does not satisfy the null hypothesis and the test rejects the null hypothesis</li>
+    <li>TP = n<sub>11</sub> = number of such individuals</li>
+  </ul></li>
+  <li><a name="TrueNegative">True negative</a>
+  <ul>
+    <li>The individual does not have the condition and tests negative for the condition</li>
+    <li>The individual satisfies the null hypothesis and the test accepts the null hypothesis</li>
+    <li>TN = n<sub>00</sub> = number of such individuals</li>
+  </ul></li>
+  <li><a name="FalsePositive">False positive</a>
+  <ul>
+    <li>The individual does not have the condition but tests positive for the condition</li>
+    <li>The individual satisfies the null hypothesis but the test rejects the null hypothesis</li>
+    <li>FP = n<sub>01</sub> = number of such individuals</li>
+  </ul></li>
+  <li><a name="FalseNegative">False negative</a>
+  <ul>
+    <li>The individual has the condition but tests negative for the condition</li>
+    <li>The individual does not satisfy the null hypothesis but the test accepts the null hypothesis</li>
+    <li>FN = n<sub>10</sub> = number of such individuals</li>
+  </ul></li>
+</ul>
+
+<h2><a name="ratios">The Four (or Eight) Basic Ratios</a></h2>
+
+<p>Each of these four fundamental numbers can be divided by its row sum or its column sum.&nbsp; This gives eight basic ratios, though they come in pairs that sum to one.</p>
+<ul>
+  <li><a name="Sensitivity">Sensitivity</a>
+  <ul>
+    <li>The chance of testing positive among those with the condition</li>
+    <li>The chance of rejecting the null hypothesis among those that do not satisfy the null hypothesis</li>
+    <li>1 - Type II Error</li>
+    <li>TP / (TP + FN) = n<sub>11</sub> / (n<sub>10</sub> + n<sub>11</sub>)</li>
+  </ul></li>
+  <li><a name="Specificity">Specificity</a> or Selectivity
+  <ul>
+    <li>The chance of testing negative among those without the condition</li>
+    <li>The chance of accepting the null hypothesis among those that satisfy the null hypothesis</li>
+    <li>1 - Type I Error</li>
+    <li>TN / (TN + FP) = n<sub>00</sub> / (n<sub>00</sub> + n<sub>01</sub>)</li>
+  </ul></li>
+  <li><a name="PositivePredictiveValue">Positive Predictive Value</a>
+  <ul>
+    <li>The chance of having the condition among those that test positive</li>
+    <li>The chance of not satisfying the null hypothesis among those that reject the null hypothesis</li>
+    <li>1 - False Discovery Rate</li>
+    <li>TP / (TP + FP) = n<sub>11</sub> / (n<sub>01</sub> + n<sub>11</sub>)</li>
+  </ul></li>
+  <li><a name="NegativePredictiveValue">Negative Predictive Value</a>
+  <ul>
+    <li>The chance of not having the condition among those that test negative</li>
+    <li>The chance of satisfying the null hypothesis among those that accept the null hypothesis</li>
+    <li>1 - False Omission Rate</li>
+    <li>TN / (TN + FN) = n<sub>00</sub> / (n<sub>00</sub> + n<sub>10</sub>)</li>
+  </ul></li>
+  <li><a name="TypeIError">Type I Error</a> or &alpha; (alpha) or p-Value or false positive rate
+  <ul>
+    <li>The chance of testing positive among those without the condition</li>
+    <li>The chance of rejecting the null hypothesis among those that satisfy the null hypothesis</li>
+    <li>1 - Specificity</li>
+    <li>FP / (FP + TN) = n<sub>01</sub> / (n<sub>00</sub> + n<sub>01</sub>)</li>
+  </ul></li>
+  <li><a name="TypeIIError">Type II Error</a> or &beta; (beta) or false negative rate
+  <ul>
+    <li>The chance of testing negative among those with the condition</li>
+    <li>The chance of accepting the null hypothesis among those that do not satisfy the null hypothesis</li>
+    <li>1 - Sensitivity</li>
+    <li>FN / (FN + TP) = n<sub>10</sub> / (n<sub>10</sub> + n<sub>11</sub>)</li>
+  </ul></li>
+  <li><a name="FalseDiscoveryRate">False Discovery Rate</a> or q-Value
+  <ul>
+    <li>The chance of not having the condition among those that test positive</li>
+    <li>The chance of satisfying the null hypothesis among those that reject the null hypothesis</li>
+    <li>1 - Positive Predictive Value</li>
+    <li>FP / (FP + TP) = n<sub>01</sub> / (n<sub>01</sub> + n<sub>11</sub>)</li>
+  </ul></li>
+  <li><a name="FalseOmissionRate">False Omission Rate</a>
+  <ul>
+    <li>The chance of having the condition among those that test negative</li>
+    <li>The chance of not satisfying the null hypothesis among those that accept the null hypothesis</li>
+    <li>1 - Negative Predictive Value</li>
+    <li>FN / (FN + TN) = n<sub>10</sub> / (n<sub>00</sub> + n<sub>10</sub>)</li>
+  </ul></li>
+</ul>
+
+<h2><a name="ratiosOfRatios">The Four Ratios of Ratios</a></h2>
+<p>Each specific test result (positive or negative) and each specific state (having the condition or not) can be used to define a ratio of ratios:</p>
+<ul>
+  <li><a name="PositiveTests">Likelihood Ratio for Positive Tests</a>
+  <ul>
+    <li>The chance of testing positive among those with the condition; divided by the chance of testing positive among those without the condition</li>
+    <li>Sensitivity / Type I Error</li>
+    <li>(1 - Type II Error) / (1 - Specificity)</li>
+    <li>[ TP / (TP + FN) ] / [ FP / (FP + TN) ]</li>
+  </ul></li>
+  <li><a name="NegativeTests">Likelihood Ratio for Negative Tests</a>
+  <ul>
+    <li>The chance of testing negative among those with the condition; divided by the chance of testing negative among those without the condition</li>
+    <li>Type II Error / Specificity</li>
+    <li>(1 - Sensitivity) / (1 - Type I Error)</li>
+    <li>[ FN / (FN + TP) ] / [ TN / (TN + FP) ]</li>
+  </ul></li>
+  <li><a name="PositiveSubjects">Likelihood Ratio for Positive Subjects</a>
+  <ul>
+    <li>The chance of having the condition among those testing positive; divided by the chance of having the condition among those testing negative</li>
+    <li>Positive Predictive Value / False Omission Rate</li>
+    <li>(1 - False Discovery Rate) / (1 - Negative Predictive Value)</li>
+    <li>[ TP / (TP + FP) ] / [ FN / (FN + TN) ]</li>
+  </ul></li>
+  <li><a name="NegativeSubjects">Likelihood Ratio for Negative Subjects</a>
+  <ul>
+    <li>The chance of not having the condition among those testing positive; divided by the chance of not having the condition among those testing negative</li>
+    <li>False Discovery Rate / Negative Predictive Value</li>
+    <li>(1 - Positive Predictive Value) / (1 - False Omission Rate)</li>
+    <li>[ FP / (FP + TP) ] / [ TN / (TN + FN) ]</li>
+  </ul></li>
+</ul>
+
+<h2><a name="whole">The Test As a Whole</a></h2>
+<p>Rather than focusing on what the data implies about any given tested individual, we can measure the quality of the test as a whole.&nbsp; That is, for a specific distinctiveness criterion, and specific assumptions about the two groups we are testing (individuals who satisfy null hypothesis vs. those who do not), we can ask what is the chance that the distinctiveness criterion will be satisfied.</p>
+<ul>
+  <li><a name="Significance">Significance</a>
+  <ul>
+    <li>The chance that the distinctiveness criterion would indicate a difference between the two groups even when the two groups do not actually differ</li>
+    <li>It is often calculated via &chi;<sup>2</sup> which, in this case, simplifies to:
+<blockquote><p>
+&chi;<sup>2</sup> = [ (TP*TN - FP*FN)<sup>2</sup> (TP+TN+FP+FN) ] / [ (TP+FP)(TP+FN)(TN+FP)(TN+FN) ]<br/>
+&chi;<sup>2</sup> = [ (n<sub>00</sub> n<sub>11</sub> - n<sub>01</sub> n<sub>10</sub>)<sup>2</sup> (n<sub>00</sub> + n<sub>01</sub> + n<sub>10</sub> + n<sub>11</sub>) ] / [ (n<sub>00</sub> + n<sub>01</sub>)(n<sub>10</sub> + n<sub>11</sub>)(n<sub>00</sub> + n<sub>10</sub>)(n<sub>01</sub> + n<sub>11</sub>) ]
+</p></blockquote></li>
+    <li>Reported as the &alpha; or p-Value (or sometimes 1 - &alpha;) of the &chi;<sup>2</sup> value</li>
+  </ul></li>
+  <li><a name="Power">Power</a>
+  <ul>
+    <li>The chance that the distinctiveness criterion would indicate a difference between the two groups when the two groups do actually differ</li>
+    <li>Depends on the choice of the distinctiveness criterion</li>
+    <li>Reported as the 1 - &beta; (or sometimes &beta;) of the distinctiveness criterion</li>
+  </ul></li>
+</ul>
+<p>Copyright 2005, 2006, Lee Newberg.&nbsp; All rights reserved.</p>
+</body>
+</html>
+<!--
+     FILE ARCHIVED ON 23:22:48 Sep 19, 2024 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 19:24:44 Apr 10, 2025.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 0.656
+  exclusion.robots: 0.029
+  exclusion.robots.policy: 0.018
+  esindex: 0.014
+  cdx.remote: 17.901
+  LoadShardBlock: 162.117 (3)
+  PetaboxLoader3.datanode: 78.061 (4)
+  PetaboxLoader3.resolve: 279.341 (3)
+  load_resource: 223.664
+-->
